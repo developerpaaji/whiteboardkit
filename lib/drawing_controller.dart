@@ -134,4 +134,8 @@ class DrawingController extends WhiteboardController {
   Stream<DrawChunk> onChunk() {
     return _chunkController.stream;
   }
+
+  void addDraw(DrawChunk drawChunk) {
+    _chunkController.add(drawChunk);
+  }
 }
