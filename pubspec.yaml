@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   json_annotation: ^2.0.0
-  xml: ^3.3.1
+  xml: ^4.2.0
   async: ^2.4.1
   synchronized: ^2.2.0
 
