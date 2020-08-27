@@ -74,8 +74,8 @@ class WhiteboardState extends State<Whiteboard> {
       // if (!initialized)
       // if (Size(constraints.maxWidth, constraints.maxHeight - toolboxOffset) !=
       //     availbleSize)
-        widget.controller.initializeSize(
-            constraints.maxWidth, constraints.maxHeight - toolboxOffset);
+      widget.controller.initializeSize(
+          constraints.maxWidth, constraints.maxHeight - toolboxOffset);
 
       availbleSize =
           Size(constraints.maxWidth, constraints.maxHeight - toolboxOffset);
@@ -107,7 +107,7 @@ class WhiteboardState extends State<Whiteboard> {
                   ),
                   child: GestureDetector(
                     onPanUpdate: (DragUpdateDetails details) {
-                      if(widget.controller.readonly) return;
+                      if (widget.controller.readonly) return;
 
                       RenderBox object = context.findRenderObject();
                       Offset _localPosition =
@@ -116,7 +116,7 @@ class WhiteboardState extends State<Whiteboard> {
                       setState(() {});
                     },
                     onPanEnd: (DragEndDetails details) {
-                      if(widget.controller.readonly) return;
+                      if (widget.controller.readonly) return;
 
                       widget.controller.onPanEnd();
                       setState(() {});
@@ -137,33 +137,33 @@ class WhiteboardState extends State<Whiteboard> {
                         }),
                   ),
                 ),
-                if (showToolBox)
-                  Positioned(
-                    bottom: 0.0,
-                    width: boardSize.width,
-                    child: ToolBox(
-                      sketchController: widget.controller,
-                      color: widget.style.toolboxColor,
-                      options: widget.controller.toolboxOptions,
-                    ),
-                  ),
-                if (showControls)
-                  showFastForward
-                      ? IconButton(
-                          key: ValueKey("skipAnimationButton"),
-                          icon: Icon(Icons.fast_forward),
-                          color: Colors.black26,
-                          onPressed: skipAnimationPressed,
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                        )
-                      : IconButton(
-                          icon: Icon(Icons.replay),
-                          color: Colors.black26,
-                          onPressed: restartAnimationPressed,
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                        )
+                (showToolBox ?? false)
+                    ? Positioned(
+                        bottom: 0.0,
+                        width: boardSize.width,
+                        child: ToolBox(
+                          sketchController: widget.controller,
+                          color: widget.style.toolboxColor,
+                          options: widget.controller.toolboxOptions,
+                        ),
+                      )
+                    : Container(),
+                (showControls ?? false) && (showFastForward ?? false)
+                    ? IconButton(
+                        key: ValueKey("skipAnimationButton"),
+                        icon: Icon(Icons.fast_forward),
+                        color: Colors.black26,
+                        onPressed: skipAnimationPressed,
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                      )
+                    : IconButton(
+                        icon: Icon(Icons.replay),
+                        color: Colors.black26,
+                        onPressed: restartAnimationPressed,
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                      )
               ],
             ),
           ],

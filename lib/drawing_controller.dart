@@ -88,7 +88,7 @@ class DrawingController extends WhiteboardController {
     }
 
     if (this.draw.lines.last.points.length == 0 ||
-        position != this.draw.lines.last.points?.last.toOffset()) {
+        position != this.draw.lines.last.points?.last?.toOffset()) {
       this.draw.lines.last.points = new List.from(this.draw.lines.last.points)
         ..add(Point.fromOffset(position));
       this.draw.lines.last.duration =

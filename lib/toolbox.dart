@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:whiteboardkit/toolbox_options.dart';
 
 import 'drawing_controller.dart';
@@ -88,9 +87,7 @@ class _ToolBoxState extends State<ToolBox> {
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        ...row,
-                      ],
+                      children: row,
                     )
                   : Container(),
             ),
@@ -134,7 +131,7 @@ class _ToolBoxState extends State<ToolBox> {
                   children: <Widget>[
                     _buildToolButton(
                       Icon(
-                        FontAwesomeIcons.pen,
+                        Icons.edit,
                         size: 20,
                       ),
                       select: ToolBoxSelected.size,
@@ -143,7 +140,7 @@ class _ToolBoxState extends State<ToolBox> {
                         select: ToolBoxSelected.color, color: brushColor),
                     _buildToolButton(
                       Icon(
-                        FontAwesomeIcons.eraser,
+                        Icons.clear,
                         color: new Color(0xffff93f5),
                         size: 26.0,
                       ),
@@ -163,20 +160,21 @@ class _ToolBoxState extends State<ToolBox> {
                   children: <Widget>[
                     _buildToolButton(
                       Icon(
-                        FontAwesomeIcons.file,
+                        Icons.file_upload,
                         size: 26.0,
                         color: widget.color,
                       ),
-                      onPress: () => {widget.sketchController.wipe()},
+                      onPress: () => widget.sketchController.wipe(),
                     ),
-                    if (widget.options.undo)
-                      _buildToolButton(
-                          Icon(
-                            FontAwesomeIcons.undo,
-                            color: widget.color,
-                            size: 24,
-                          ),
-                          onPress: widget.sketchController.undo),
+                    (widget.options.undo ?? false)
+                        ? _buildToolButton(
+                            Icon(
+                              Icons.undo,
+                              color: widget.color,
+                              size: 24,
+                            ),
+                            onPress: widget.sketchController.undo)
+                        : Container(),
                   ],
                 ),
                 decoration: BoxDecoration(
@@ -232,7 +230,7 @@ class _ToolBoxState extends State<ToolBox> {
       height: 90,
       width: 80,
       child: IconButton(
-        icon: Icon(FontAwesomeIcons.pen),
+        icon: Icon(Icons.edit),
         color: Colors.black54,
         iconSize: size * 1.6,
         onPressed: () => changeSize(size),
@@ -282,7 +280,7 @@ class _ToolBoxState extends State<ToolBox> {
       height: 60,
       width: 60,
       child: IconButton(
-        icon: Icon(FontAwesomeIcons.eraser),
+        icon: Icon(Icons.edit),
         color: new Color(0xffff93f5),
         iconSize: size,
         onPressed: () => changeEraser(true, size),

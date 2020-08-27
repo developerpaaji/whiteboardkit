@@ -52,7 +52,7 @@ abstract class WhiteboardController {
 }
 
 class PlayControls {
-  Stream<WhiteboardDraw> onComplete() {}
+  Stream<WhiteboardDraw> onComplete() async* {}
 
   play() async {}
 
